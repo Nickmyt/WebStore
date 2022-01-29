@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">WebStore</string>
+    <string name="signout">Sign Out</string>
+</resources>
