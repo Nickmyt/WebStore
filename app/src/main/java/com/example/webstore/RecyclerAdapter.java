@@ -17,16 +17,16 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
     ArrayList<String> titlebook;
     ArrayList<String> descbook ;
     ArrayList<String> link;
-    ArrayList pricebook ;
-    ArrayList availbook ;
+    ArrayList<Long> pricebook ;
+    ArrayList<Long> availbook ;
     Context context;
 
     public RecyclerAdapter(Context ct,
                            ArrayList<String> titles,
                            ArrayList<String> desc,
                            ArrayList<String> link,
-                           ArrayList price,
-                           ArrayList avail) {
+                           ArrayList<Long> price,
+                           ArrayList<Long> avail) {
         context = ct;
         titlebook = titles;
         descbook = desc;
@@ -47,15 +47,15 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         holder.TitleText.setText(titlebook.get(position));
-        holder.AvailText.setText((Integer) availbook.get(position));
+        holder.AvailText.setText(String.valueOf(availbook.get(position)));
         holder.DescText.setText(descbook.get(position));
-        holder.PriceText.setText((Integer) pricebook.get(position));
+        holder.PriceText.setText(String.valueOf((pricebook.get(position))));
 
     }
 
     @Override
     public int getItemCount() {
-        return 6;
+        return availbook.size();
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder{
