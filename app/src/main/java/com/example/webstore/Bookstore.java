@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,10 +27,12 @@ import java.util.ArrayList;
 public class Bookstore extends AppCompatActivity {
     private TextView textView;
     private String user;
+    private Button buttonbuy;
     private FirebaseAuth mAuth;
     private FirebaseUser userfire;
     private FirebaseFirestore db;
     RecyclerView recyclerView;
+    int booknum = 0;
 
     //Query Variables
 
@@ -99,4 +102,13 @@ public class Bookstore extends AppCompatActivity {
         startActivity(new Intent(this, MainActivity.class));
         finish();
     }
+
+
+    public void Buy(View view){
+        buttonbuy = findViewById(R.id.BuyButton);
+
+
+
+    }
+
 }

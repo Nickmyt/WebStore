@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -24,7 +25,7 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
     private EditText editFname, editLname, editEmail, editPassword, editTextPhone ;
     private Button registeruser;
     private ProgressBar progressBar;
-
+    private TextView textView;
     private String email,fname,password;
     boolean check;
 
@@ -41,7 +42,7 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
         editEmail = findViewById(R.id.email);
         editPassword = findViewById(R.id.password2);
 
-
+        textView = findViewById(R.id.contexttext);
 
 
         mAuth = FirebaseAuth.getInstance();
@@ -95,18 +96,21 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
         }
 
         progressBar.setVisibility(View.VISIBLE);
-
+        textView.setVisibility(View.INVISIBLE);
         mAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()){
                     Toast.makeText(Register.this, "User Has been Created", Toast.LENGTH_SHORT).show();
                     progressBar.setVisibility(View.INVISIBLE);
+                    textView.setVisibility(View.VISIBLE);
+
                     check = true;
                 }else{
                     Toast.makeText(Register.this, "Error User Creation Failed", Toast.LENGTH_SHORT).show();
                     check = false;
                     progressBar.setVisibility(View.INVISIBLE);
+                    textView.setVisibility(View.VISIBLE);
 
                 }
 

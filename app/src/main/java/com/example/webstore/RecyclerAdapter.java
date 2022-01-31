@@ -1,6 +1,8 @@
 package com.example.webstore;
 
 import android.content.Context;
+import android.media.Image;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +13,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.ArrayList;
 
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyViewHolder> {
@@ -20,6 +24,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
     ArrayList<Long> pricebook ;
     ArrayList<Long> availbook ;
     Context context;
+
 
     public RecyclerAdapter(Context ct,
                            ArrayList<String> titles,
@@ -51,6 +56,10 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
         holder.DescText.setText(descbook.get(position));
         holder.PriceText.setText(String.valueOf((pricebook.get(position))));
 
+        Log.d("HERE",link.get(position) );
+        Picasso.with(context).load(link.get(position)).into(holder.cover);
+
+
     }
 
     @Override
@@ -60,6 +69,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
 
     public class MyViewHolder extends RecyclerView.ViewHolder{
 
+        public ImageView imageView;
         TextView TitleText , DescText , PriceText, AvailText;
         ImageView cover;
         Button Buy;
@@ -70,8 +80,10 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
             DescText = itemView.findViewById(R.id.bookdesc);
             cover = itemView.findViewById(R.id.imageView2);
             PriceText = itemView.findViewById(R.id.bookprice);
+
             AvailText = itemView.findViewById(R.id.bookavail);
             Buy = itemView.findViewById(R.id.BuyButton);
+
         }
     }
 

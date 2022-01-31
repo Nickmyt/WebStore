@@ -6,7 +6,7 @@
     android:layout_height="wrap_content">
 
     <androidx.cardview.widget.CardView
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -14,13 +14,13 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
+            android:layout_width="388dp"
             android:layout_height="match_parent">
 
             <ImageView
                 android:id="@+id/imageView2"
-                android:layout_width="81dp"
-                android:layout_height="107dp"
+                android:layout_width="86dp"
+                android:layout_height="115dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -31,23 +31,23 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="4dp"
                 android:text="@string/app_name"
                 android:textSize="12sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toStartOf="@+id/booktitle"
+                app:layout_constraintStart_toEndOf="@+id/imageView2"
                 app:layout_constraintTop_toBottomOf="@+id/booktitle" />
 
             <TextView
                 android:id="@+id/booktitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="216dp"
+                android:layout_height="58dp"
                 android:layout_marginStart="4dp"
                 android:layout_marginTop="4dp"
                 android:text="@string/app_name"
                 android:textSize="24sp"
                 android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toEndOf="@+id/imageView2"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -73,10 +73,11 @@
 
             <Button
                 android:id="@+id/BuyButton"
-                android:layout_width="83dp"
-                android:layout_height="48dp"
-                android:layout_marginStart="4dp"
-                android:layout_marginTop="2dp"
+                android:layout_width="59dp"
+                android:layout_height="45dp"
+                android:layout_marginStart="36dp"
+                android:layout_marginTop="4dp"
+                android:onClick="Buy"
                 android:text="Buy"
                 android:textSize="12sp"
                 app:layout_constraintStart_toEndOf="@+id/imageView2"
@@ -96,12 +97,24 @@
                 android:id="@+id/bookprice"
                 android:layout_width="38dp"
                 android:layout_height="18dp"
-                android:layout_marginStart="8dp"
+                android:layout_marginStart="44dp"
                 android:layout_marginTop="24dp"
                 android:text="@string/app_name"
                 android:textSize="14sp"
-                app:layout_constraintStart_toEndOf="@+id/textView12"
+                app:layout_constraintStart_toStartOf="@+id/textView12"
                 app:layout_constraintTop_toBottomOf="@+id/bookdesc" />
+
+            <ImageView
+                android:id="@+id/imageView7"
+                android:layout_width="34dp"
+                android:layout_height="41dp"
+                android:layout_marginTop="4dp"
+                app:layout_constraintEnd_toStartOf="@+id/BuyButton"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/imageView2"
+                app:layout_constraintTop_toBottomOf="@+id/bookdesc"
+                app:srcCompat="@drawable/pngtreevector_microphone_icon_4162885" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>
