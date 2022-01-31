@@ -13,6 +13,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.storage.FirebaseStorage;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -24,6 +25,8 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
     ArrayList<Long> pricebook ;
     ArrayList<Long> availbook ;
     Context context;
+    FirebaseStorage storage ;
+
 
 
     public RecyclerAdapter(Context ct,
@@ -51,12 +54,15 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
+
         holder.TitleText.setText(titlebook.get(position));
         holder.AvailText.setText(String.valueOf(availbook.get(position)));
         holder.DescText.setText(descbook.get(position));
         holder.PriceText.setText(String.valueOf((pricebook.get(position))));
 
+        storage = FirebaseStorage.getInstance();
         Log.d("HERE",link.get(position) );
+
         Picasso.with(context).load(link.get(position)).into(holder.cover);
 
 

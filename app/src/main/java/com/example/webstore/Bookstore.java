@@ -21,6 +21,7 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.storage.FirebaseStorage;
 
 import java.util.ArrayList;
 
@@ -34,6 +35,7 @@ public class Bookstore extends AppCompatActivity {
     RecyclerView recyclerView;
     int booknum = 0;
 
+
     //Query Variables
 
 
@@ -46,6 +48,8 @@ public class Bookstore extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bookstore);
+
+
 
         textView = findViewById(R.id.user);
         textView.setText(getIntent().getStringExtra("email"));
