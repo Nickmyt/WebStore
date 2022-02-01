@@ -7,8 +7,10 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.speech.tts.TextToSpeech;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -24,17 +26,19 @@ import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 public class Bookstore extends AppCompatActivity {
     private TextView textView;
     private String user;
     private Button buttonbuy;
     private FirebaseAuth mAuth;
-    private FirebaseUser userfire;
+    private TextToSpeech mtts;
     private FirebaseFirestore db;
+    private boolean check ;
     RecyclerView recyclerView;
     int booknum = 0;
-
+    String text;
 
     //Query Variables
 
@@ -50,7 +54,7 @@ public class Bookstore extends AppCompatActivity {
         setContentView(R.layout.activity_bookstore);
 
 
-
+        check = false;
         textView = findViewById(R.id.user);
         textView.setText(getIntent().getStringExtra("email"));
         mAuth = FirebaseAuth.getInstance();
@@ -79,11 +83,24 @@ public class Bookstore extends AppCompatActivity {
 
 
                     }
+
                     RecyclerAdapter recyclerAdapter = new RecyclerAdapter(Bookstore.this,title,desc,imagelink,price,avail);
                     try{
                         //Initialize the adapter with the recyclerview object
 
                         recyclerView.setAdapter(recyclerAdapter);
+                        recyclerAdapter.setOnItemClickListener(new RecyclerAdapter.OnItemClickListener() {
+                            @Override
+                            public void onItemClick(int position) {
+
+                            }
+
+                            @Override
+                            public void TTs(int position) {
+                                ReadDesc(position);
+                            }
+                        });
+
 
 
                     }
@@ -101,6 +118,8 @@ public class Bookstore extends AppCompatActivity {
 
     }
 
+
+
     public void SignOut(View view) {
         mAuth.signOut();
         startActivity(new Intent(this, MainActivity.class));
@@ -111,8 +130,30 @@ public class Bookstore extends AppCompatActivity {
     public void Buy(View view){
         buttonbuy = findViewById(R.id.BuyButton);
 
+    }
+
+    public void ReadDesc(int position){
+        mtts = new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener() {
+            @Override
+            public void onInit(int status) {
+                    if (status!= TextToSpeech.ERROR){
+                        mtts.setLanguage(Locale.ENGLISH);
+
+                    }
+                    if(check == false){
+                        mtts.speak(desc.get(position),1,null,null);
+                        check = true;
+                    }else{
+                        mtts.stop();
+                        mtts.speak(desc.get(position),1,null,null);
+                        check = false;
+                    }
+            }
+        });
+
 
 
     }
+
 
 }
