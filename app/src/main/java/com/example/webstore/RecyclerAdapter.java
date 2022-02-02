@@ -72,7 +72,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
         holder.TitleText.setText(titlebook.get(position));
         holder.AvailText.setText(String.valueOf(availbook.get(position)));
         holder.DescText.setText(descbook.get(position));
-        String text = String.valueOf((pricebook.get(position)))+"€";
+        String text = String.valueOf((pricebook.get(position)))+" €";
         holder.PriceText.setText(text);
 
 
@@ -118,12 +118,18 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
                     }
                 }
             });
+
+            Buy.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(listener!=null){
+                        int position = getAbsoluteAdapterPosition();
+                        listener.onItemClick(position);
+                    }
+                }
+            });
         }
 
-
-    }
-    public interface RecyclerviewClicklistener{
-        public void onClick(View v , int position);
 
     }
 

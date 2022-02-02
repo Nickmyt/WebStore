@@ -92,7 +92,7 @@ public class Bookstore extends AppCompatActivity {
                         recyclerAdapter.setOnItemClickListener(new RecyclerAdapter.OnItemClickListener() {
                             @Override
                             public void onItemClick(int position) {
-
+                                AddtoCart(position);
                             }
 
                             @Override
@@ -154,6 +154,15 @@ public class Bookstore extends AppCompatActivity {
 
 
     }
+    public void AddtoCart(int position){
+        if(avail.get(position) != 0){
+            booknum+=1;
+            
 
+
+        }else{
+            Toast.makeText(Bookstore.this, "Sorry Book not available", Toast.LENGTH_SHORT);
+        }
+    }
 
 }
