@@ -5,10 +5,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.speech.RecognizerIntent;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -17,6 +19,9 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+
+import java.util.ArrayList;
+import java.util.Locale;
 
 public class Register extends AppCompatActivity implements View.OnClickListener {
 
@@ -28,6 +33,8 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
     private TextView textView;
     private String email,fname,password;
     boolean check;
+    private ImageView speakmic;
+    private static final int REQUEST_CODE_SPEECH_INPUT = 10000;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,7 +50,13 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
         editPassword = findViewById(R.id.password2);
 
         textView = findViewById(R.id.contexttext);
-
+        speakmic = findViewById(R.id.mic);
+        speakmic.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                speak();
+            }
+        });
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -121,6 +134,35 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
 
     }
 
+    private void speak(){
+        Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, Locale.getDefault());
+        intent.putExtra(RecognizerIntent.EXTRA_PROMPT, "Hi !");
+
+
+        try {
+            startActivityForResult(intent,REQUEST_CODE_SPEECH_INPUT);
+
+        }catch (Exception e){
+
+        }
 
 
     }
+
+    protected void onActivityResult(int requestCode, int resultCode, Intent intent){
+        super.onActivityResult(requestCode,resultCode,intent);
+        switch (requestCode){
+            case REQUEST_CODE_SPEECH_INPUT:{
+                if(resultCode == RESULT_OK && null!=intent){
+                    ArrayList<String> result = intent.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
+                    editFname.setText((CharSequence) result.get(0));
+                }
+                break;
+            }
+        }
+    }
+
+
+}

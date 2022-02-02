@@ -27,10 +27,8 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
     ArrayList<Long> pricebook ;
     ArrayList<Long> availbook ;
     Context context;
-    FirebaseStorage storage ;
     private OnItemClickListener Mlistener;
-    StorageReference storageReference;
-    String img;
+
 
 
 
@@ -74,16 +72,15 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
         holder.TitleText.setText(titlebook.get(position));
         holder.AvailText.setText(String.valueOf(availbook.get(position)));
         holder.DescText.setText(descbook.get(position));
-        holder.PriceText.setText(String.valueOf((pricebook.get(position))));
+        String text = String.valueOf((pricebook.get(position)))+"€";
+        holder.PriceText.setText(text);
 
 
-        StorageReference pathreference = FirebaseStorage.getInstance().getReference();
-        StorageReference imageRef = pathreference.child("gs://webstore-4ffd7.appspot.com/");
-        StorageReference imageRefinal = imageRef.child(link.get(position));
+
 
         Log.d("HERE",link.get(position) );
 
-        Picasso.with(context).load(imageRefinal.toString()).into(holder.cover);
+        Picasso.with(context).load(link.get(position)).into(holder.cover);
 
 
 
