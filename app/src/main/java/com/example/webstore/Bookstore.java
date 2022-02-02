@@ -157,7 +157,7 @@ public class Bookstore extends AppCompatActivity {
     public void AddtoCart(int position){
         if(avail.get(position) != 0){
             booknum+=1;
-            
+
 
 
         }else{
