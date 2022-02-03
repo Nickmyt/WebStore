@@ -14,35 +14,39 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
+            android:layout_width="399dp"
             android:layout_height="match_parent">
 
             <ImageView
                 android:id="@+id/CoverView"
-                android:layout_width="128dp"
-                android:layout_height="141dp"
+                android:layout_width="82dp"
+                android:layout_height="105dp"
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/textView14"
+                app:layout_constraintHorizontal_bias="0.04"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0"
                 tools:srcCompat="@tools:sample/avatars" />
 
             <TextView
                 android:id="@+id/descText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
+                android:layout_marginStart="12dp"
                 android:layout_marginBottom="36dp"
                 android:text="@string/number"
                 android:textSize="18sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/CoverView"
-                app:layout_constraintTop_toBottomOf="@+id/titleText" />
+                app:layout_constraintTop_toBottomOf="@+id/titleText"
+                app:layout_constraintVertical_bias="0.333" />
 
             <TextView
                 android:id="@+id/titleText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
+                android:layout_marginStart="12dp"
                 android:layout_marginTop="16dp"
                 android:text="@string/Order"
                 android:textSize="24sp"
@@ -52,15 +56,29 @@
 
             <TextView
                 android:id="@+id/textView14"
-                android:layout_width="24dp"
-                android:layout_height="31dp"
-                android:layout_marginEnd="16dp"
+                android:layout_width="12dp"
+                android:layout_height="23dp"
+                android:layout_marginEnd="288dp"
                 android:text="@string/number"
                 android:textSize="16sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/descText" />
+                app:layout_constraintTop_toBottomOf="@+id/descText"
+                app:layout_constraintVertical_bias="0.714" />
+
+            <TextView
+                android:id="@+id/poso"
+                android:layout_width="19dp"
+                android:layout_height="19dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="28dp"
+                android:text="@string/number"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/titleText"
+                app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

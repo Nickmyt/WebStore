@@ -30,7 +30,7 @@ import java.util.ArrayList;
 import java.util.Locale;
 
 public class Bookstore extends AppCompatActivity {
-    private TextView textView;
+    private TextView textView, BookNumtext;
     private String user;
     private Button buttonbuy;
     private FirebaseAuth mAuth;
@@ -48,7 +48,7 @@ public class Bookstore extends AppCompatActivity {
     ArrayList<String> imagelink= new ArrayList<String>();
     ArrayList<Long> price = new ArrayList<>();
     ArrayList<Long> avail = new ArrayList<>();
-    ArrayList<Object> objectArrayList  = new ArrayList<>();
+    ArrayList<CartModel> objectArrayList  = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,7 +63,7 @@ public class Bookstore extends AppCompatActivity {
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(Bookstore.this));
         cart = findViewById(R.id.imageView);
-
+        BookNumtext = findViewById(R.id.booknumber);
 
 
 
@@ -160,10 +160,14 @@ public class Bookstore extends AppCompatActivity {
     }
     public void AddtoCart(int position){
         if(avail.get(position) != 0){
-            booknum+=1;
-            CartModel cartModel = new CartModel(title.get(position),desc.get(position),imagelink.get(position), price.get(position));
-            objectArrayList.add(cartModel);
-
+            if(avail.get(position)>=1) {
+                booknum += 1;
+                BookNumtext.setText(String.valueOf(booknum));
+                CartModel cartModel = new CartModel(title.get(position), desc.get(position), imagelink.get(position), price.get(position));
+                objectArrayList.add(cartModel);
+            }else{
+                Toast.makeText(Bookstore.this, "Sorry Book no more books available",Toast.LENGTH_SHORT);
+            }
 
         }else{
             Toast.makeText(Bookstore.this, "Sorry Book not available", Toast.LENGTH_SHORT);

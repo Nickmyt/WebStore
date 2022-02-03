@@ -23,26 +23,27 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
 
 
 
+
     ArrayList<String> titlebook;
     ArrayList<String> descbook ;
     ArrayList<String> link;
     ArrayList<Long> pricebook ;
-    ArrayList<Long> availbook ;
+    ArrayList<Long> count;
 
-    public CartAdapter(Context context, ArrayList<String> titles, ArrayList<String> desc, ArrayList<String> link, ArrayList<Long> price, ArrayList<Long> avail  ){
+    public CartAdapter(Context context, ArrayList<String> titles, ArrayList<String> desc, ArrayList<String> link, ArrayList<Long> price, ArrayList<Long> countfrom ){
         this.context = context;
         titlebook = titles;
         descbook = desc;
         this.link = link;
         pricebook = price;
-        availbook = avail;
+        count = countfrom;
 
     }
 
 
     @NonNull
     @Override
-    public CartAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(context);
         View view =  layoutInflater.inflate(R.layout.my_row_cart,parent, false);
         MyViewHolder myViewHolder = new MyViewHolder(view);
@@ -54,26 +55,25 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.MyViewHolder> 
 
         holder.TextTitle.setText(titlebook.get(position));
         holder.TextDesc.setText(descbook.get(position));
-        String text =((pricebook.get(position)))+" €";
-        holder.priceText.setText(text);
+        holder.priceText.setText(((String.valueOf(pricebook.get(position)))));
         Picasso.with(context).load(link.get(position)).into(holder.imageViewCover);
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return titlebook.size();
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder{
-        TextView priceAllText , TextDesc , TextTitle , priceText;
+        TextView priceAllText , TextDesc , TextTitle , priceText, posoText;
         ImageView imageViewCover;
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-
+            posoText = itemView.findViewById(R.id.poso);
             TextTitle = itemView.findViewById(R.id.titleText);
             TextDesc = itemView.findViewById(R.id.descText);
             imageViewCover = itemView.findViewById(R.id.CoverView);
-            priceAllText = itemView.findViewById(R.id.textView14);
+            priceText = itemView.findViewById(R.id.textView14);
 
 
 
