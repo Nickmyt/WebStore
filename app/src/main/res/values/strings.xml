@@ -2,4 +2,6 @@
     <string name="app_name">WebStore</string>
     <string name="signout">Sign Out</string>
     <string name="number">0</string>
+    <string name="Checkout">Checkout</string>
+    <string name="Order">Order</string>
 </resources>

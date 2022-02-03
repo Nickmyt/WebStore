@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -38,8 +39,7 @@ public class Bookstore extends AppCompatActivity {
     private boolean check ;
     RecyclerView recyclerView;
     int booknum = 0;
-    String text;
-
+    private ImageView cart;
     //Query Variables
 
 
@@ -48,6 +48,7 @@ public class Bookstore extends AppCompatActivity {
     ArrayList<String> imagelink= new ArrayList<String>();
     ArrayList<Long> price = new ArrayList<>();
     ArrayList<Long> avail = new ArrayList<>();
+    ArrayList<Object> objectArrayList  = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -61,6 +62,10 @@ public class Bookstore extends AppCompatActivity {
         db = FirebaseFirestore.getInstance();
         recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(Bookstore.this));
+        cart = findViewById(R.id.imageView);
+
+
+
 
         db.collection("Books").get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
             @Override
@@ -72,14 +77,6 @@ public class Bookstore extends AppCompatActivity {
                         imagelink.add(document.getString("Link"));
                         price.add(document.getLong("Price"));
                         avail.add(document.getLong("Availability"));
-                        //TEST to see if the values are fetched properly
-                        Log.d("Test", String.valueOf(title));
-                        Log.d("Test", String.valueOf(desc));
-                        Log.d("Test", String.valueOf(imagelink));
-                        Log.d("Test", String.valueOf(price));
-                        Log.d("Test", String.valueOf(avail));
-
-
 
 
                     }
@@ -114,7 +111,14 @@ public class Bookstore extends AppCompatActivity {
             }
         });
 
-
+        cart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Bookstore.this, CartActivity.class);
+                intent.putExtra("products", objectArrayList);
+                startActivity(intent);
+            }
+        });
 
     }
 
@@ -157,7 +161,8 @@ public class Bookstore extends AppCompatActivity {
     public void AddtoCart(int position){
         if(avail.get(position) != 0){
             booknum+=1;
-
+            CartModel cartModel = new CartModel(title.get(position),desc.get(position),imagelink.get(position), price.get(position));
+            objectArrayList.add(cartModel);
 
 
         }else{
