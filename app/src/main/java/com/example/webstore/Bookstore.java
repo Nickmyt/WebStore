@@ -117,6 +117,7 @@ public class Bookstore extends AppCompatActivity {
                 Intent intent = new Intent(Bookstore.this, CartActivity.class);
                 intent.putExtra("products", objectArrayList);
                 startActivity(intent);
+                finish();
             }
         });
 
