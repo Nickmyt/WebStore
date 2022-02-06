@@ -58,7 +58,7 @@
                 android:id="@+id/textView14"
                 android:layout_width="12dp"
                 android:layout_height="23dp"
-                android:layout_marginEnd="288dp"
+                android:layout_marginEnd="292dp"
                 android:text="@string/number"
                 android:textSize="16sp"
                 android:textStyle="bold"
@@ -69,15 +69,17 @@
 
             <TextView
                 android:id="@+id/poso"
-                android:layout_width="19dp"
-                android:layout_height="19dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="28dp"
+                android:layout_width="22dp"
+                android:layout_height="25dp"
+                android:layout_marginTop="68dp"
+                android:layout_marginEnd="256dp"
                 android:text="@string/number"
+                android:textSize="16sp"
                 android:textStyle="bold"
+                android:visibility="invisible"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintStart_toEndOf="@+id/titleText"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="@+id/textView14"
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>

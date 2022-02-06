@@ -132,10 +132,6 @@ public class Bookstore extends AppCompatActivity {
     }
 
 
-    public void Buy(View view){
-        buttonbuy = findViewById(R.id.BuyButton);
-
-    }
 
     public void ReadDesc(int position){
         mtts = new TextToSpeech(getApplicationContext(), new TextToSpeech.OnInitListener() {

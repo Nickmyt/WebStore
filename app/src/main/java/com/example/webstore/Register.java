@@ -26,15 +26,17 @@ import java.util.Locale;
 public class Register extends AppCompatActivity implements View.OnClickListener {
 
 
+
+    //Init Variables
     private FirebaseAuth mAuth;
-    private EditText editFname, editLname, editEmail, editPassword, editTextPhone ;
+    private EditText editFname, editEmail, editPassword;
     private Button registeruser;
     private ProgressBar progressBar;
     private TextView textView;
     private String email,fname,password;
     boolean check;
     private ImageView speakmic;
-    private static final int REQUEST_CODE_SPEECH_INPUT = 10000;
+    private static final int REQUEST_CODE_SPEECH_INPUT = 100;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,6 +53,7 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
 
         textView = findViewById(R.id.contexttext);
         speakmic = findViewById(R.id.mic);
+        //For Speech to Text
         speakmic.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -86,7 +89,7 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
         progressBar = findViewById(R.id.progressBar);
 
         password = editPassword.getText().toString().trim();
-
+        //Check if the inputs are Valid
         if(fname.isEmpty()){
             editFname.setError("Enter First Name !");
             editFname.requestFocus();
@@ -110,6 +113,7 @@ public class Register extends AppCompatActivity implements View.OnClickListener 
 
         progressBar.setVisibility(View.VISIBLE);
         textView.setVisibility(View.INVISIBLE);
+        //Authentication Procedure
         mAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {

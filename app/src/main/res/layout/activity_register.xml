@@ -152,13 +152,14 @@
         android:id="@+id/contexttext"
         android:layout_width="224dp"
         android:layout_height="73dp"
+        android:layout_marginStart="96dp"
         android:layout_marginTop="4dp"
         android:text="*Password must be at least 8 characters long and must contain 1 number and 1 capital letter "
         android:textSize="12sp"
         app:layout_constraintBottom_toTopOf="@+id/signup"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/password2"
-        app:layout_constraintVertical_bias="0.0"
-        tools:layout_editor_absoluteX="111dp" />
+        app:layout_constraintVertical_bias="0.0" />
 
     <ImageView
         android:id="@+id/mic"
